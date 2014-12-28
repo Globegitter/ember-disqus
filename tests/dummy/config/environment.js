@@ -16,7 +16,16 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+
+    contentSecurityPolicy: {
+      'style-src': "'self' 'unsafe-inline'",
+      'frame-src': "*",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' http://octosmashed.disqus.com http://a.disquscdn.com",
+      'report-uri': "'none'",
+      'img-src': "'self' *"
     }
+
   };
 
   if (environment === 'development') {
