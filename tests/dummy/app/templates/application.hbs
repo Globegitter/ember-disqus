@@ -2,9 +2,12 @@
 
 <ul>
   <li>{{#link-to 'index'}}Home{{/link-to}}</li>
-  <li>{{#link-to 'post' 1 disqusIdentifier=1}}One{{/link-to}}</li>
-  <li>{{#link-to 'post' 2 disqusIdentifier=2}}Two{{/link-to}}</li>
-  <li>{{#link-to 'post' 3 disqusIdentifier=3}}Three{{/link-to}}</li>
+  <li>{{#link-to 'post' 1 disqusIdentifier='1'}}One{{/link-to}}</li>
+  <li>{{#link-to 'post' 2 disqusIdentifier='2'}}Two{{/link-to}}</li>
+  <li>{{#link-to 'post' 3 disqusIdentifier='3'}}Three{{/link-to}}</li>
+  <li>{{#link-to 'post' 4 disqusIdentifier='4'}}Four{{/link-to}}</li>
 </ul>
+
+{{!-- {{disqus-comment-count identifier='4'}} --}}
 
 {{outlet}}

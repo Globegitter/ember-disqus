@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-disqus'
+  name: 'ember-disqus',
 };
