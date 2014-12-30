@@ -5,7 +5,6 @@ import setOnWindow from 'ember-disqus/utils/observers/set-on-window';
 export default Em.Component.extend({
   elementId: 'disqus_thread',
   classNames: ['disqus_comments'],
-  debouncePeriod: 100,
 
   /* Options */
 

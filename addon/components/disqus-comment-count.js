@@ -5,7 +5,6 @@ import setOnWindow from 'ember-disqus/utils/observers/set-on-window';
 export default Em.Component.extend({
   attributeBindings: ['identifier:data-disqus-identifier'],
   classNames: ['disqus-comment-count'],
-  debouncePeriod: 100,
   tagName: 'span',
   layout: Em.Handlebars.compile('{{identifier}}'),
 

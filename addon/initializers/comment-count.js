@@ -1,17 +1,19 @@
 import Em from 'ember';
 
+var loadedAPIs = Em.Object.create({});
+
 export default {
   name: 'comment-count',
 
   initialize: function(container, app) {
+    var initializer = this;
     var shortname;
 
     /* Defaults */
 
     var options = {
-      // enableCommentCount: false,
       lazyLoad: true,
-      shortname: null,
+      shortname: null
     };
 
     /* Override defaults */
@@ -28,51 +30,45 @@ export default {
     window.disqus_shortname = shortname;
 
     var loadAPI = function(fileName) {
-      var options = this.get('disqusOptions');
-      var documentIsReady = document.readyState === 'complete';
       var assertion = fileName === 'embed' ? 'DISQUS' : 'DISQUSWIDGETS';
+      var documentIsReady = document.readyState === 'complete';
+      var options = this.get('disqusOptions');
 
       if (window[assertion]) {
         return;
-      } else if (!options.get('lazyLoad') || documentIsReady) {
-        Em.$.getScript('//' + options.get('shortname') + '.disqus.com/' + fileName + '.js');
+      } else if ((!options.get('lazyLoad') || documentIsReady) && !loadedAPIs.get(fileName)) {
+          Em.$.getScript('//' + options.get('shortname') + '.disqus.com/' + fileName + '.js');
+          loadedAPIs.set(fileName, true);
       } else {
-        Em.run.debounce(this, this.loadAPI, fileName, assertion, this.get('debouncePeriod'));
+        Em.run.debounce(this, this.loadAPI, fileName, 100);
       }
     };
 
     app.register('disqusOptions:main', options, { instantiate: false });
     app.register('disqusAPILoader:main', loadAPI, { instantiate: false });
 
-    ['component:disqus-comments',
-     'component:disqus-comment-count',
-     'view:linkTo'].forEach(function(name) {
-      app.inject(name, 'disqusOptions', 'disqusOptions:main');
-      app.inject(name, 'loadAPI', 'disqusAPILoader:main');
+    ['disqus-comments', 'disqus-comment-count'].forEach(function(name) {
+      app.inject('component:' + name, 'disqusOptions', 'disqusOptions:main');
+      app.inject('component:' + name, 'loadAPI', 'disqusAPILoader:main');
     });
-
-     console.log(app);
 
     /* Add ability to show comment counts */
 
-    if (options.get('enableCommentCount')) {
+    Em.LinkView.reopen({
+      attributeBindings: ['disqusIdentifier:data-disqus-identifier'],
+      classNameBindings: ['showCommentCount:disqus-comment-count'],
+      disqusIdentifier: null,
 
-      // Em.$.getScript('//' + shortname + '.disqus.com/count.js');
+      /* Because we can't inject into the link view... */
 
-      Em.LinkView.reopen({
-        attributeBindings: ['disqusIdentifier:data-disqus-identifier'],
-        classNameBindings: ['showCommentCount:disqus-comment-count'],
-        disqusIdentifier: null,
+      disqusOptions: options,
+      loadAPI: loadAPI,
 
-        disqusOptions: options,
-        loadAPI: loadAPI,
-
-        testdyif: function() {
-          if (this.get('disqusIdentifier')) {
-            this.loadAPI('count');
-          }
-        }.on('didInsertElement'),
-      });
-    }
+      checkForDisqus: function() {
+        if (this.get('disqusIdentifier')) {
+          this.loadAPI('count');
+        }
+      }.on('didInsertElement'),
+    });
   }
 };
