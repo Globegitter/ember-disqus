@@ -1,8 +1,9 @@
-# Ember Disqus
+Ember Disqus [![Build Status](https://travis-ci.org/sir-dunxalot/ember-disqus.svg)](https://travis-ci.org/sir-dunxalot/ember-disqus) [![Ember Addon](https://s3.amazonaws.com/images.jebbit.com/ember/badge.jpg)]
+======
 
-`ember-disqus` provides an easy way to integrate [Disqus](//disqus.com) with your Ember CLI app. This Ember addon also lazy-loads the Disqus API to improve performance of your app.
+`ember-disqus` provides an easy way to integrate [Disqus](//disqus.com) with your Ember CLI app. This Ember addon also lazy-loads only the required parts of the Disqus API to improve performance of your app.
 
-If you do not already have a free Disqus account, you will need to [create one](//disqus.com) to use this addon.
+**If you do not already have a free Disqus account, you will need to [create one](//disqus.com) to use this addon.**
 
 If you don't know what Disqus is, it's a widely used, free, cloud-hosted commenting system that makes it very easy to add commenting and conversation to your blog or website. This addon makes it even easier to add to Ember CLI apps.
 

@@ -31,9 +31,10 @@
     "express": "^4.8.5",
     "glob": "^4.0.5"
   },
-  "description": "An easy way to integrate the Disqus comments platform with your Ember.js apps using components and lazy-loading",
+  "description": "An easy way to integrate the Disqus comments platform with your Ember.js apps using components and lazy loading",
   "keywords": [
     "ember-addon",
+    "ember",
     "disqus",
     "comments",
     "commenters",
