@@ -149,6 +149,21 @@ Should you wish to work on this project, it is easy to get acquainted with the s
 - `addon/components/disqus-comments` - The comment component that displays specific comment threads
 - `addon/initializers/comment-count` - The initializer that extends the `{{link-to}}` view to allow any link to display a comment count. It also registers the function used to load the Disqus APIs and keep track of what APIs still need loading.
 
+
+Should you wish to extend any of this addon's components to override any methods/properties in your application then you can do so.
+
+```
+import CommentComponent from `ember-disqus/components/disqus-comments`;
+
+export CommentComponent.extend({
+  // Override stuff here
+
+  loadAPI: function() {
+    // Do something different from the plugin here
+  }
+});
+```
+
 You can start the live-reloading server using:
 
 ```sh
@@ -171,3 +186,6 @@ For more information on using ember-cli, visit [http://www.ember-cli.com/](//www
 ### Features in the Works
 
 - Better (aka existent) test suite
+- Add debouncePeriod to an options hash
+- Improve method of identifying what's alreayd loaded between modules
+- Add class names to the options hash
