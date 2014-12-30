@@ -1,4 +1,4 @@
-Ember Disqus [![Build Status](https://travis-ci.org/sir-dunxalot/ember-disqus.svg)](https://travis-ci.org/sir-dunxalot/ember-disqus) [![Ember Addon](https://s3.amazonaws.com/images.jebbit.com/ember/badge.jpg)]
+Ember Disqus [![Build Status](https://travis-ci.org/sir-dunxalot/ember-disqus.svg)](https://travis-ci.org/sir-dunxalot/ember-disqus) ![Ember Addon](https://s3.amazonaws.com/images.jebbit.com/ember/badge.jpg)
 ======
 
 `ember-disqus` provides an easy way to integrate [Disqus](//disqus.com) with your Ember CLI app. This Ember addon also lazy-loads only the required parts of the Disqus API to improve performance of your app.
