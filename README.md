@@ -145,12 +145,20 @@ module.exports = function(environment) {
 
 ## Development
 
-Should you wish to work on this project, it is easy to get acquainted with the source. There are only three files you need to look at:
+Should you wish to work on this project, it is easy to get acquainted with the source.
+
+```shell
+git clone https://github.com/sir-dunxalot/ember-disqus.git
+npm install
+bower install
+ember s
+```
+
+There are three main files you need to look at:
 
 - `addon/components/disqus-comment-count` - The comment count component that renders as a `<span>`
 - `addon/components/disqus-comments` - The comment component that displays specific comment threads
 - `addon/initializers/comment-count` - The initializer that extends the `{{link-to}}` view to allow any link to display a comment count. It also registers the function used to load the Disqus APIs and keep track of what APIs still need loading.
-
 
 Should you wish to extend any of this addon's components to override any methods/properties in your application then you can do so.
 
